@@ -115,9 +115,8 @@ body{
          WELCOME SECTION 
 ===============================*/
 div.welcome-section{
-    background: url();
+    background: url(../img/welcome-back.svg) no-repeat center center fixed;
     background-size: cover;
-    background-repeat: no-repeat;
 }
 .welcome-section{
     position: relative;
@@ -217,11 +216,19 @@ div.welcome-section{
     text-align: center;
     text-transform: uppercase;
 }
+/*
+.box-tittle{
+    margin: 1em auto;
+    padding: 1em;
+    background: #deba44;
+    width: max-content;
+    transition: all 1s ease 1s;
+}*/
 .people-tittle{
+    padding: 1em;
     font-size: 2em;
-    margin: 1em 0;
-    transition: all 1s ease;
     font-weight: 400;
+    transition: all 1s ease 0s;
 }
 .people-section .content-wrap .people-line{
     margin: 1em 0;
@@ -278,6 +285,8 @@ div.welcome-section{
 .people-section .content-wrap .people-line .card:hover > .country{
     transform: translateX(20%);
 }
+
+/*.people-section.content-hidden .content-wrap .box-tittle{opacity: 0; transform: translate3d(-50px, 0, 0)}*/
 .people-section.content-hidden .content-wrap .people-tittle{opacity: 0; transform: translate3d(0, -50px, 0)}
 .people-section.content-hidden .content-wrap .people-line .card{opacity: 0; transform: translate3d(0, -50px, 0)}
 /*=============================
@@ -286,7 +295,7 @@ div.welcome-section{
 .sponsor-section{
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 60vh;
 }
 .sponsor-section .content-wrap{
     position: absolute;
@@ -333,7 +342,54 @@ div.welcome-section{
     display: block;
 }
 .become-sponsor .become-tittle{
-    padding-top: 5em;
+    padding: 2.8em  .5em 1.8em .5em;
     font-size: .3em;
     font-weight: 200;
+    color: #ffffff;
+}
+.become-button button{
+    background: none;
+    border-radius: .4em;
+    color: #ffffff;
+    padding: .6em;
+    border: 1px solid #888888;
+    transition: .6s;
+}
+.become-button button:focus{
+    outline: none;
+}
+/*=============================
+         Modalidades
+===============================*/
+.modalidades-section{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin-top: 2em;
+}
+.modalidades-section .content-wrap{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+.modalidades-section .content-wrap .conference{
+    display: inline-block;
+}
+.modalidades-section .content-wrap .modalidades-tittle{
+    font-weight: 200;
+    font-size: 1.3em;
+    padding: 3em 3em;
+    text-align: center;
+}
+.modalidades-section .content-wrap .competition{
+    display: inline-block;
+}
+.modalidades-section .content-wrap .competition .precencial{
+    display: block;
+    position: relative;
+    width: 100%;
+
 }
