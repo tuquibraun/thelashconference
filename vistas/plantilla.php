@@ -5,155 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>thelashconference</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php
+
+      session_start();
+
+
+
+     ?>
+     <link rel="stylesheet" href="vistas/css/plugins/bootstrap.min.css">
+
+	<link rel="stylesheet" href="vistas/css/plugins/font-awesome.min.css">
+
+	<link rel="stylesheet" href="vistas/css/plugins/flexslider.css">
+
+	<link rel="stylesheet" href="vistas/css/plugins/sweetalert.css">
+
+	<link rel="stylesheet" href="vistas/css/plugins/dscountdown.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" media="screen" href="vistas/css/main.css" />
+
+    <script src="vistas/js/plugins/jquery.min.js"></script>
+
+    <script src="vistas/js/plugins/bootstrap.min.js"></script>
+
+    <script src="vistas/js/plugins/jquery.easing.js"></script>
+
+    <script src="vistas/js/plugins/jquery.scrollUp.js"></script>
+
+    <script src="vistas/js/plugins/jquery.flexslider.js"></script>
+
+    <script src="vistas/js/plugins/sweetalert.min.js"></script>
+
+    <script src="vistas/js/plugins/md5-min.js"></script>
 
 </head>
 <body>
-    <nav class="nav content-hidden">
-            <div class="icon toggle-btn">
-                    <div class="hamburger">
-                    </div>
-            </div>
-            <ul class="side-nav">
-                <li class="nav-item">
-                    <a href="#" class="site-name">the lash conference</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#welcome" class="nav-link">inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#people" class="nav-link">oradores &amp; jurado</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#sponsor" class="nav-link">sponsors</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#modalidades" class="nav-link">competencia</a>
-                </li>
-            </ul>
-    </nav>
-    <div id="welcome" class="welcome-section content-hidden">
-            <div class="content-wrap">
 
-                <div class="tittle">
-                    <h1>The Lash Conference</h1>
-                </div>
-                <div class="date">
-                    <h3>En Febrero</h3>
-                    <h4>Del 2019</h4>
-                </div>
+    <?php
 
-                <div class="scrollindicator">
-                    <div class="mouse">
-                        <div class="wheel">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
+      include "vistas/modulos/menu.php";
 
-    <div id="people" class="people-section content-hidden">
-       <div class="content-wrap">
-<div class="box-tittle">
-    <h1 class="people-tittle">Oradores &amp; Jurado</h1>
+      include "vistas/modulos/portada.php";
 
-</div>
+      include "vistas/modulos/personas.php";
 
-           <div class="people-line">
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                </div>
+      include "vistas/modulos/sponsors.php";
 
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                </div>
+     ?>
 
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                    </div>
 
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                </div>
-           </div>
-
-           <div class="people-line">
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                </div>
-
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                </div>
-
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                    </div>
-
-                <div class="card">
-                    <img class="person" src="vistas/img/daisy.jpg" alt="">
-                    <h3 class="name">Arantza Kurtnickova</h3>
-                    <h3 class="rol">Speaker and Online Judge</h3>
-                    <i></i><h4 class="country">Canada</h4>
-                </div>
-           </div>
-       </div>
-    </div>
-
-    <div id="sponsor" class="sponsor-section content-hidden">
-        <div class="content-wrap">
-            <h1 class="sponsor-tittle">
-                nuestros sponsors
-            </h1>
-            <div class="brand">
-                <img src="vistas/img/lashglobal.png" alt="" class="brand-logo">
-                <h2 class="brand-name">
-                </h2>
-            </div>
-            <div class="brand">
-                <img src="vistas/" alt="" class="brand-logo">
-                <h2 class="brand-name">
-                    Brand Name
-                </h2>
-            </div>
-            <div class="brand">
-                <img src="vistas/" alt="" class="brand-logo">
-                <h2 class="brand-name">
-                    Brand Name
-                </h2>
-            </div>
-            <div class="become-sponsor">
-                <div class="become-tittle">
-                    <h1>queres ser nuestro sponsor?</h1>
-                </div>
-                <div class="become-button">
-                    <button type="button">contactanos</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="modalidades" class="modalidades-section content-hidden">
         <div class="content-wrap">
