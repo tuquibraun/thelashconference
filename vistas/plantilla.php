@@ -158,50 +158,83 @@
     <div id="modalidades" class="modalidades-section content-hidden">
         <div class="content-wrap">
             <div class="conference">
-                <h1 class="modalidades-tittle">
-                    Conferencia Internacional
-                </h1>
-                <div class="presencial">
-                    <h3>campeonato en vivo</h3>
-                    <ul class="nominaciones">
-                        <li>nominaciones</li>
-                        <li>clasico</li>
-                        <li>megavolumen</li>
-                        <li>kim style   </li>
-                    </ul>
-                </div>
-                <div class="online">
-                    <h3>campeonato online</h3>
-                    <ul class="nominaciones">
-                        <li>nominaciones</li>
-                        <li>clasico</li>
-                        <li>megavolumen</li>
-                        <li>kim style   </li>
-                    </ul>
-                </div>
+            <h1 class="modalidades-tittle">
+                Conferencia
+            </h1>
+            <div class="text">
+                Veni a la conferencia internacional mas prestigiosa de latinoamerica con oradores de todo el mundo, ademas participa de una cena de gala comprando tu entrada vip.
+            </div>
             </div>
             <div class="competition">
                 <h1 class="modalidades-tittle">
                     Competencia
                 </h1>
-                <div class="presencial">
-                    <h3>campeonato en vivo</h3>
-                    <ul class="nominaciones">
-                        <li>nominaciones</li>
-                        <li>clasico</li>
-                        <li>megavolumen</li>
-                        <li>kim style   </li>
-                    </ul>
+                <div class="text">
+                    <div class="online">
+                        <h3>campeonato online</h3>
+                        <ul class="nominaciones">
+                            <li>nominaciones</li>
+                            <li>clasico</li>
+                            <li>megavolumen</li>
+                            <li>kim style   </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="online">
-                    <h3>campeonato online</h3>
-                    <ul class="nominaciones">
-                        <li>nominaciones</li>
-                        <li>clasico</li>
-                        <li>megavolumen</li>
-                        <li>kim style   </li>
-                    </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="social-section">
+        <div class="content-wrap">
+            <div class="social">
+                <h1 class="social-tittle">
+                    Encontranos en las redes
+                </h1>
+                <ul class="media">
+                    <a href="www.facebook.com/thelashconference" target="_blank">
+                        <li class="facebook icon"></li>
+                    </a>
+                    <a href="www.instagram.com/thelashconference" target="_blank">
+                        <li class="instagram icon"></li>
+                    </a>
+                    <a href="www.twitter.com/thelashconference" target="_blank">
+                        <li class="twitter icon"></li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-section">
+        <div class="content-wrap">
+            <div class="pre-footer">
+                <div class="content">
+                    <div class="col col2">
+                            <h2>Contacto</h2>
+                            <div class="contacto">
+                                <p>contacto@thelashconference.com</p>
+                                <p>+54 (298) 4652497</p>
+                                <p>+54 (298) 4652497</p>
+                            </div>
+                        </div>
+                        <div class="col col3">
+                            <h2>Legal</h2>
+                            <div class="legal">
+                                <p><a href="">term</a></p>
+                                <p><a href="">priv</a></p>
+                            </div>
+                        </div>
+                        <div class="col col4">
+                            <div class="arrow-top">
+
+                            </div>
+                            <div class="digit">
+                                Hecho por <span>digit()</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            <div class="the-footer">
+                <h2>copyright &copy; the lash conference 2019</h2>
             </div>
         </div>
     </div>
