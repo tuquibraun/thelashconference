@@ -16,7 +16,7 @@
 
         echo '
         <div class="card">
-          <img class="person" src="'.$value['imagen'].'" alt="">
+          <img class="person" src="http://localhost/thelashconference/maquetado2/'.$value['img'].'" alt="">
           <h3 class="name">'.$value['nombre'].'</h3>
           <h3 class="rol">'.$value['tipo'].'</h3>
           <i></i><h4 class="country">'.$value['pais'].'</h4>

@@ -6,7 +6,7 @@ class ControladorPersonas{
 	MOSTRAR CATEGORÍAS
 	=============================================*/
 
-	static public function ctrMostrarPeronass($item, $valor){
+	static public function ctrMostrarPersonas($item, $valor){
 
 		$tabla = "personas";
 

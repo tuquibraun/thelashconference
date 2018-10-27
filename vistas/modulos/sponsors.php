@@ -3,30 +3,21 @@
         <h1 class="sponsor-tittle">
             nuestros sponsors
         </h1>
-        <div class="brand">
-            <img src="vistas/img/lashglobal.png" alt="" class="brand-logo">
-            <h2 class="brand-name">
-            </h2>
-        </div>
-        <div class="brand">
-            <img src="vistas/" alt="" class="brand-logo">
-            <h2 class="brand-name">
-                Brand Name
-            </h2>
-        </div>
-        <div class="brand">
-            <img src="vistas/" alt="" class="brand-logo">
-            <h2 class="brand-name">
-                Brand Name
-            </h2>
-        </div>
-        <div class="become-sponsor">
-            <div class="become-tittle">
-                <h1>queres ser nuestro sponsor?</h1>
-            </div>
-            <div class="become-button">
-                <button type="button">contactanos</button>
-            </div>
-        </div>
+
+        <?php
+
+        $sponsors = ControladorSponsors::ctrMostrarSponsors(null, null);
+
+        foreach ($sponsors as $key => $value){
+            echo'
+            <div class="brand">
+                <img src="'.$value['img'].'" alt="" class="brand-logo">
+                <h2 class="brand-name">
+                <h3 class="content-hidden">'.$value['nombre'].'</h3>
+                </h2>
+            </div>';
+        }
+
+        ?>
     </div>
 </div>
