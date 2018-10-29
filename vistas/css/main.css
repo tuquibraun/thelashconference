@@ -438,12 +438,21 @@ div.welcome-section{
     margin: 1em;
     font-weight: 400;
     font-size: 1.5em;
+    opacity: 1;
+    transition: all 1s ease;
 }
 .social-section .content-wrap .social .media .icon{
     position: relative;
     display: inline-block;
     margin: 1em;
+    opacity: 1;
+    transition: all 1s ease 1s;
 }
+/*=============================
+         SOCIAL ANIMACION
+===============================*/
+.social-section.content-hidden .content-wrap .social .social-tittle{opacity: 0; transform: translate3d(0, -50px, 0)}
+.social-section.content-hidden .content-wrap .social .media .icon{opacity: 0; transform: translate3d(0, -50px, 0)}
 /*=============================
          SOCIAL ICONS
 ===============================*/
@@ -498,8 +507,6 @@ div.welcome-section{
     padding: 3.5em .5em;
     left: 0;
     top: 0;
-}
-.footer-section .content-wrap .pre-footer .col .legal{
 }
 .footer-section .content-wrap .pre-footer .col h2{
     font-weight: 400;

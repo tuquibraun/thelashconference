@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    <div class="social-section">
+    <div class="social-section content-hidden">
         <div class="content-wrap">
             <div class="social">
                 <h1 class="social-tittle">
