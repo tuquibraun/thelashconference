@@ -44,7 +44,7 @@ $(function(){
         if (currScrollPos > socialMedia) {
             $('.social-section').removeClass('content-hidden');
         }else{
-            $('.people-section').addClass('content-hidden');
+            $('.social-section').addClass('content-hidden');
         }
     })
 
