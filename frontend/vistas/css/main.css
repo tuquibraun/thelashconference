@@ -115,8 +115,8 @@ body{
          WELCOME SECTION
 ===============================*/
 div.welcome-section{
-    background: url(../img/welcome-back.svg) no-repeat center center fixed;
-    background-size: cover;
+    /*background: url(../img/welcome-back.svg) no-repeat center center fixed;
+    background-size: cover;*/
 }
 .welcome-section{
     position: relative;
@@ -371,25 +371,160 @@ div.welcome-section{
     position: absolute;
     width: 100%;
     height: 100%;
-    text-align: center;
     text-transform: uppercase;
     overflow: hidden;
 }
 .modalidades-section .content-wrap .conference{
-    display: inline-block;
+    left: 0%;
+    width: 60%;
+    padding: 1em;
+}
+.modalidades-section .content-wrap .conference .text{
+    padding: .8em;
 }
 .modalidades-section .content-wrap .modalidades-tittle{
-    font-weight: 200;
+    font-weight: 400;
     font-size: 1.3em;
-    padding: 3em 3em;
+    padding: 2em 1em 1em 1em;
     text-align: center;
 }
 .modalidades-section .content-wrap .competition{
-    display: inline-block;
+    left: 50%;
+    padding: 1em;
 }
-.modalidades-section .content-wrap .competition .precencial{
-    display: block;
+.modalidades-section .content-wrap .competition .text{
+    padding: 1em;
+    margin-left: 40em;
+    margin-right: 0;
+}
+.modalidades-section .content-wrap .competition .text .presencial{
+    display: inline-block;
+    padding: 1em;
+}
+.modalidades-section .content-wrap .competition .text .online{
+    display: inline-block;
+    padding: 1em;
+}
+.modalidades-section .content-wrap .competition .text h3{
+    font-weight: 400;
+}
+.modalidades-section .content-wrap .competition .text .nominaciones{
+    list-style-type: none;
+    font-size: 1em;
+    font-weight: 300;
+    padding: 1.2em;
+}
+/*=============================
+         SOCIAL SECTION
+===============================*/
+.social-section{
     position: relative;
     width: 100%;
+    height: 50vh;
+    margin: 2em 0;
+}
+.social-section .content-wrap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);/* centra el wrapper*/
+    overflow: hidden;
+}
+.social-section .content-wrap .social{
+    text-align: center;
+    text-transform: uppercase;
+}
+.social-section .content-wrap .social .social-tittle{
+    margin: 1em;
+    font-weight: 400;
+    font-size: 1.5em;
+    opacity: 1;
+    transition: all 1s ease;
+}
+.social-section .content-wrap .social .media .icon{
+    position: relative;
+    display: inline-block;
+    margin: 1em;
+    opacity: 1;
+    transition: all 1s ease 1s;
+}
+/*=============================
+         SOCIAL ANIMACION
+===============================*/
+.social-section.content-hidden .content-wrap .social .social-tittle{opacity: 0; transform: translate3d(0, -50px, 0)}
+.social-section.content-hidden .content-wrap .social .media .icon{opacity: 0; transform: translate3d(0, -50px, 0)}
+/*=============================
+         SOCIAL ICONS
+===============================*/
+.instagram{
+    height: 80px;
+    width: 80px;
+    background: url(../img/instagram.svg);
+}
+.facebook{
+    height: 80px;
+    width: 80px;
+    background: url(../img/facebook.svg);
+}
+.twitter{
+    height: 80px;
+    width: 80px;
+    background: url(../img/twitter.svg);
+}
+/*=============================
+         FOOTER SECTION
+===============================*/
+.footer-section{
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    top: 0;
+    left: 0;
+}
+.footer-section .content-wrap{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    background: #c0c0c0;
+}
+/*=============================
+         PRE FOOTER
+===============================*/
+.footer-section .content-wrap .pre-footer{
+    width: 100%;
+    background: #888;
+    height: 80%;
+    display: table;
+}
+.footer-section .content-wrap .pre-footer .content{
+    display: table-row;
 
+}
+.footer-section .content-wrap .pre-footer .col{
+    position: relative;
+    display: table-cell;
+    padding: 3.5em .5em;
+    left: 0;
+    top: 0;
+}
+.footer-section .content-wrap .pre-footer .col h2{
+    font-weight: 400;
+    font-size: 1.3em;
+}
+.footer-section .content-wrap .pre-footer .col p{
+    width: 75%;
+}
+/*=============================
+         THE FOOTER
+===============================*/
+.the-footer{
+    padding-top: 2em;
+    display: block;
+    text-align: center;
+    left: 50%;
+}
+.the-footer h2{
+    font-size: 1em;
+    font-weight: 200;
 }
