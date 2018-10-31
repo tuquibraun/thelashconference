@@ -114,10 +114,11 @@ body{
 /*=============================
          WELCOME SECTION
 ===============================*/
+/*
 div.welcome-section{
-    /*background: url(../img/welcome-back.svg) no-repeat center center fixed;
-    background-size: cover;*/
-}
+    background: url(../img/back.jpg) no-repeat center center fixed;
+    background-size: cover;
+}*/
 .welcome-section{
     position: relative;
     width: 100%;
@@ -446,7 +447,7 @@ div.welcome-section{
     display: inline-block;
     margin: 1em;
     opacity: 1;
-    transition: all 1s ease 1s;
+    transition: all 1s ease .7s;
 }
 /*=============================
          SOCIAL ANIMACION
