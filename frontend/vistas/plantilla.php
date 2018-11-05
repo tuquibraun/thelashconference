@@ -78,12 +78,11 @@
                 <div class="text">
                     <div class="online">
                         <h3>campeonato online</h3>
-                        <ul class="nominaciones">
-                            <li>nominaciones</li>
-                            <li>clasico</li>
-                            <li>megavolumen</li>
-                            <li>kim style   </li>
-                        </ul>
+
+                        <?php
+                            include "vistas/modulos/nominaciones.php";
+                        ?>
+                        
                     </div>
                 </div>
                 
