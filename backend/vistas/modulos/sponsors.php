@@ -40,7 +40,7 @@ return;
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPerfil">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarSponsor" id="lala">
 
           Agregar sponsor
 
@@ -50,7 +50,7 @@ return;
 
       <div class="box-body">
 
-        <table class="table table-bordered table-striped dt-responsive tablaPerfiles" width="100%">
+        <table class="table table-bordered table-striped dt-responsive tablaSponsors" width="100%">
 
           <thead>
 
@@ -59,9 +59,8 @@ return;
              <th style="width:10px">#</th>
              <th>Nombre</th>
              <th>Descripcion</th>
-             <th>Logo</th>
-             <th>Categoria</th>
-             <th>Estado</th>
+             <th>Imagen</th>
+             <th>Tipo</th>
              <th>Acciones</th>
 
            </tr>
@@ -75,14 +74,14 @@ return;
             $item = null;
             $valor = null;
 
-            $perfiles = ControladorAdministradores::ctrMostrarAdministradores($item, $valor);
+            $sponsors = ControladorSponsors::ctrMostrarSponsors($item, $valor);
 
-             foreach ($perfiles as $key => $value){
+             foreach ($sponsors as $key => $value){
 
                  echo ' <tr>
                           <td>'.($key+1).'</td>
                           <td>'.$value["nombre"].'</td>
-                          <td>'.$value["email"].'</td>';
+                          <td>'.$value["descripcion"].'</td>';
 
                          if($value["imagen"] != ""){
 
@@ -94,9 +93,9 @@ return;
 
                         }
 
-                        echo '<td>'.$value["perfil"].'</td>';
+                        echo '<td>'.$value["tipo"].'</td>';
 
-                         if($value["estado"] != 0){
+                    /*     if($value["estado"] != 0){
 
                           echo '<td><button class="btn btn-success btn-xs btnActivar" idPerfil="'.$value["id"].'" estadoPerfil="0">Activado</button></td>';
 
@@ -104,15 +103,15 @@ return;
 
                           echo '<td><button class="btn btn-danger btn-xs btnActivar" idPerfil="'.$value["id"].'" estadoPerfil="1">Desactivado</button></td>';
 
-                        }
+                        } */
 
                          echo '<td>
 
                           <div class="btn-group">
 
-                            <button class="btn btn-warning btnEditarPerfil" idPerfil="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarPerfil"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-warning btnEditarSponsor" idSponsor="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarSponsor"><i class="fa fa-pencil"></i></button>
 
-                            <button class="btn btn-danger btnEliminarPerfil" idPerfil="'.$value["id"].'" fotoPerfil="'.$value["imagen"].'"><i class="fa fa-times"></i></button>
+                            <button class="btn btn-danger btnEliminarSponsor" idSponsor="'.$value["id"].'" imagenSponsor="'.$value["imagen"].'"><i class="fa fa-times"></i></button>
 
                           </div>
 
@@ -137,16 +136,18 @@ return;
 </div>
 
 <!--=====================================
-MODAL AGREGAR PERFIL
+MODAL AGREGAR SPONSOR
 ======================================-->
 
-<div id="modalAgregarPerfil" class="modal fade" role="dialog">
+<div id="modalAgregarSponsor" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
 
     <div class="modal-content">
 
       <form role="form" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" class="form-control input-lg" name="nuevoSponsor">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -156,7 +157,7 @@ MODAL AGREGAR PERFIL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar Perfil</h4>
+          <h4 class="modal-title">Agregar Sponsor</h4>
 
         </div>
 
@@ -182,35 +183,8 @@ MODAL AGREGAR PERFIL
 
             </div>
 
-            <!-- ENTRADA PARA EL EMAIL -->
 
-             <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-
-                <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingresar Email" id="nuevoEmail" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA LA CONTRASEÑA -->
-
-             <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder="Ingresar contraseña" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
+            <!-- ENTRADA PARA SELECCIONAR TIPO -->
 
             <div class="form-group">
 
@@ -218,15 +192,31 @@ MODAL AGREGAR PERFIL
 
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                <select class="form-control input-lg" name="nuevoPerfil">
+                <select class="form-control input-lg" name="nuevoTipo">
 
-                  <option value="">Selecionar perfil</option>
+                  <option value="">Selecionar tipo</option>
 
-                  <option value="administrador">Administrador</option>
+                  <option value="bronce">Bronce</option>
 
-                  <option value="editor">Editor</option>
+                  <option value="silver">Silver</option>
+
+                  <option value="gold">Gold</option>
 
                 </select>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA LA DESCRIPCION -->
+
+             <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar Descripcion" id="nuevaDescripcion" required>
 
               </div>
 
@@ -236,11 +226,11 @@ MODAL AGREGAR PERFIL
 
              <div class="form-group">
 
-              <div class="panel">SUBIR FOTO</div>
+              <div class="panel">SUBIR IMAGEN</div>
 
-              <input type="file" class="nuevaFoto" name="nuevaFoto">
+              <input type="file" class="nuevaImagen" name="nuevaImagen">
 
-              <p class="help-block">Peso máximo de la foto 2MB</p>
+              <p class="help-block">Peso máximo de la imagen 2MB</p>
 
               <img src="vistas/img/perfiles/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
@@ -258,14 +248,14 @@ MODAL AGREGAR PERFIL
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar Perfil</button>
+          <button type="submit" class="btn btn-primary">Guardar Sponsor</button>
 
         </div>
 
         <?php
 
-          $crearPerfil = new ControladorAdministradores();
-          $crearPerfil -> ctrCrearPerfil();
+          $crearSponsor = new ControladorSponsors();
+          $crearSponsor -> ctrCrearSponsor();
 
         ?>
 
@@ -278,16 +268,20 @@ MODAL AGREGAR PERFIL
 </div>
 
 <!--=====================================
-MODAL EDITAR PERFIL
+MODAL EDITAR SPONSOR
 ======================================-->
 
-<div id="modalEditarPerfil" class="modal fade" role="dialog">
+<div id="modalEditarSponsor" class="modal fade" role="dialog">
 
   <div class="modal-dialog">
 
     <div class="modal-content">
 
       <form role="form" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" class="form-control input-lg" id="idSponsor" name="idSponsor">
+
+        <input type="hidden" class="form-control input-lg" name="editarSponsor">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -297,7 +291,7 @@ MODAL EDITAR PERFIL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar Perfil</h4>
+          <h4 class="modal-title">Editar Sponsor</h4>
 
         </div>
 
@@ -317,45 +311,14 @@ MODAL EDITAR PERFIL
 
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required>
-
-                <input type="hidden" id="idPerfil" name="idPerfil">
+                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" placeholder="Ingresar nombre" required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL EMAIL -->
 
-             <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-
-                <input type="email" class="form-control input-lg" id="editarEmail" name="editarEmail" value="" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA LA CONTRASEÑA -->
-
-             <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escriba la nueva contraseña">
-
-                <input type="hidden" id="passwordActual" name="passwordActual">
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
+            <!-- ENTRADA PARA SELECCIONAR TIPO -->
 
             <div class="form-group">
 
@@ -363,15 +326,31 @@ MODAL EDITAR PERFIL
 
                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                <select class="form-control input-lg" name="editarPerfil">
+                <select class="form-control input-lg" name="editarTipo">
 
-                  <option value="" id="editarPerfil"></option>
+                  <option value="" id="editarTipo">Selecionar tipo</option>
 
-                  <option value="administrador">Administrador</option>
+                  <option value="bronce">Bronce</option>
 
-                  <option value="editor">Editor</option>
+                  <option value="silver">Silver</option>
+
+                  <option value="gold">Gold</option>
 
                 </select>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA LA DESCRIPCION -->
+
+             <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+                <input type="text" class="form-control input-lg" name="editarDescripcion" value="" placeholder="Ingresar Descripcion" id="editarDescripcion">
 
               </div>
 
@@ -381,15 +360,15 @@ MODAL EDITAR PERFIL
 
              <div class="form-group">
 
-              <div class="panel">SUBIR FOTO</div>
+              <div class="panel">SUBIR IMAGEN</div>
 
-              <input type="file" class="nuevaFoto" name="editarFoto">
+              <input type="file" class="nuevaImagen" name="editarImagen">
 
-              <p class="help-block">Peso máximo de la foto 2MB</p>
+              <p class="help-block">Peso máximo de la imagen 2MB</p>
 
               <img src="vistas/img/perfiles/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
-              <input type="hidden" name="fotoActual" id="fotoActual">
+              <input type="hidden" name="imagenActual" id="imagenActual">
 
             </div>
 
@@ -405,14 +384,14 @@ MODAL EDITAR PERFIL
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Modificar Perfil</button>
+          <button type="submit" class="btn btn-primary">Modificar Sponsor</button>
 
         </div>
 
-     <?php
+        <?php
 
-          $editarPerfil = new ControladorAdministradores();
-          $editarPerfil -> ctrEditarPerfil();
+          $editarSponsor = new ControladorSponsors();
+          $editarSponsor -> ctrEditarSponsor();
 
         ?>
 
@@ -426,7 +405,7 @@ MODAL EDITAR PERFIL
 
 <?php
 
-  $eliminarPerfil = new ControladorAdministradores();
-  $eliminarPerfil -> ctrEliminarPerfil();
+  $eliminarSponsor = new ControladorSponsors();
+  $eliminarSponsor -> ctrEliminarSponsor();
 
 ?>

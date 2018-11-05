@@ -37,6 +37,8 @@ MENU
 
   <li><a href="productos"><i class="fa fa-product-hunt"></i> <span>Gestor Productos</span></a></li>
 
+	<li> <a href="sponsors"><i class="fa fa-stripe-s"></i> <span>Gestor Sponsors</span></a></li>
+
 
   <?php
 

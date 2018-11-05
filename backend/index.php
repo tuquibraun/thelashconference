@@ -13,7 +13,9 @@ require_once "controladores/usuarios.controlador.php";
 require_once "controladores/ventas.controlador.php";
 require_once "controladores/visitas.controlador.php";
 require_once "controladores/notificaciones.controlador.php";
+require_once "controladores/sponsors.controlador.php";
 
+require_once "modelos/sponsors.modelo.php";
 require_once "modelos/administradores.modelo.php";
 require_once "modelos/categorias.modelo.php";
 require_once "modelos/subcategorias.modelo.php";

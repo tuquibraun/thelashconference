@@ -141,6 +141,7 @@ session_start();
   <script src="vistas/js/gestorCategorias.js"></script>
   <script src="vistas/js/gestorSubCategorias.js"></script>
   <script src="vistas/js/gestorProductos.js"></script>
+  <script src="vistas/js/gestorSponsors.js"></script>
   <script src="vistas/js/gestorVentas.js"></script>
   <script src="vistas/js/gestorVisitas.js"></script>
   <script src="vistas/js/gestorUsuarios.js"></script>
@@ -180,6 +181,7 @@ session_start();
            $_GET["ruta"]== "categorias" ||
            $_GET["ruta"]== "subcategorias" ||
            $_GET["ruta"]== "productos" ||
+           $_GET["ruta"]== "sponsors" ||
            $_GET["ruta"]== "ventas" ||
            $_GET["ruta"]== "visitas" ||
            $_GET["ruta"]== "usuarios" ||
