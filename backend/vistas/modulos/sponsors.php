@@ -67,64 +67,6 @@ return;
 
           </thead>
 
-          <tbody>
-
-            <?php
-
-            $item = null;
-            $valor = null;
-
-            $sponsors = ControladorSponsors::ctrMostrarSponsors($item, $valor);
-
-             foreach ($sponsors as $key => $value){
-
-                 echo ' <tr>
-                          <td>'.($key+1).'</td>
-                          <td>'.$value["nombre"].'</td>
-                          <td>'.$value["descripcion"].'</td>';
-
-                         if($value["imagen"] != ""){
-
-                          echo '<td><img src="'.$value["imagen"].'" class="img-thumbnail" width="40px"></td>';
-
-                         }else{
-
-                            echo '<td><img src="vistas/img/perfiles/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
-
-                        }
-
-                        echo '<td>'.$value["tipo"].'</td>';
-
-                    /*     if($value["estado"] != 0){
-
-                          echo '<td><button class="btn btn-success btn-xs btnActivar" idPerfil="'.$value["id"].'" estadoPerfil="0">Activado</button></td>';
-
-                        }else{
-
-                          echo '<td><button class="btn btn-danger btn-xs btnActivar" idPerfil="'.$value["id"].'" estadoPerfil="1">Desactivado</button></td>';
-
-                        } */
-
-                         echo '<td>
-
-                          <div class="btn-group">
-
-                            <button class="btn btn-warning btnEditarSponsor" idSponsor="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarSponsor"><i class="fa fa-pencil"></i></button>
-
-                            <button class="btn btn-danger btnEliminarSponsor" idSponsor="'.$value["id"].'" imagenSponsor="'.$value["imagen"].'"><i class="fa fa-times"></i></button>
-
-                          </div>
-
-                        </td>
-
-                      </tr>';
-             }
-
-
-            ?>
-
-          </tbody>
-
         </table>
 
       </div>

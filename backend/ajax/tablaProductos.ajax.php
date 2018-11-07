@@ -9,16 +9,15 @@ require_once "../modelos/categorias.modelo.php";
 require_once "../controladores/subcategorias.controlador.php";
 require_once "../modelos/subcategorias.modelo.php";
 
-require_once "../controladores/cabeceras.controlador.php";
-require_once "../modelos/cabeceras.modelo.php";
+require_once "../modelos/conexion.php";
 
 class TablaProductos{
 
   /*=============================================
   MOSTRAR LA TABLA DE PRODUCTOS
-  =============================================*/ 
+  =============================================*/
 
-  public function mostrarTablaProductos(){	
+  public function mostrarTablaProductos(){
 
   	$item = null;
   	$valor = null;
@@ -27,10 +26,10 @@ class TablaProductos{
 
   	$datosJson = '
 
-  		{	
+  		{
   			"data":[';
 
-	 	for($i = 0; $i < count($productos)-1; $i++){
+	 	for($i = 0; $i < count($productos); $i++){
 
 			/*=============================================
   			TRAER LAS CATEGORÍAS
@@ -44,7 +43,7 @@ class TablaProductos{
 			if($categorias["categoria"] == ""){
 
 				$categoria = "SIN CATEGORÍA";
-			
+
 			}else{
 
 				$categoria = $categorias["categoria"];
@@ -54,7 +53,7 @@ class TablaProductos{
   			TRAER LAS SUBCATEGORÍAS
   			=============================================*/
 
-  			$item2 = "id";
+  		$item2 = "id";
 			$valor2 = $productos[$i]["id_subcategoria"];
 
 			$subcategorias = ControladorSubCategorias::ctrMostrarSubCategorias($item2, $valor2);
@@ -62,7 +61,7 @@ class TablaProductos{
 			if($subcategorias[0]["subcategoria"] == ""){
 
 				$subcategoria = "SIN SUBCATEGORÍA";
-			
+
 			}else{
 
 				$subcategoria = $subcategorias[0]["subcategoria"];
@@ -88,76 +87,12 @@ class TablaProductos{
 
   			$estado = "<button class='btn btn-xs btnActivar ".$colorEstado."' idProducto='".$productos[$i]["id"]."' estadoProducto='".$estadoProducto."'>".$textoEstado."</button>";
 
-  			/*=============================================
-  			TRAER LAS CABECERAS
-  			=============================================*/
-
-  			$item3 = "ruta";
-			$valor3 = $productos[$i]["ruta"];
-
-			$cabeceras = ControladorCabeceras::ctrMostrarCabeceras($item3, $valor3);
-
-			if($cabeceras["portada"] != ""){
-
-  				$imagenPortada = "<img src='".$cabeceras["portada"]."' class='img-thumbnail imgPortadaProductos' width='100px'>";
-
-  			}else{
-
-  				$imagenPortada = "<img src='vistas/img/cabeceras/default/default.jpg' class='img-thumbnail imgPortadaProductos' width='100px'>";
-  			}
-
 			/*=============================================
   			TRAER IMAGEN PRINCIPAL
   			=============================================*/
 
-  			$imagenPrincipal = "<img src='".$productos[$i]["portada"]."' class='img-thumbnail imgTablaPrincipal' width='100px'>";
+  			$imagenPrincipal = "<img src='".$productos[$i]["imagen"]."' class='img-thumbnail imgTablaPrincipal' width='100px'>";
 
-  			/*=============================================
-			TRAER MULTIMEDIA
-  			=============================================*/
-
-  			if($productos[$i]["multimedia"] != null){
-
-  				$multimedia = json_decode($productos[$i]["multimedia"],true);
-
-  				if($multimedia[0]["foto"] != ""){
-
-  					$vistaMultimedia = "<img src='".$multimedia[0]["foto"]."' class='img-thumbnail imgTablaMultimedia' width='100px'>";
-
-  				}else{
-
-  					$vistaMultimedia = "<img src='http://i3.ytimg.com/vi/".$productos[$i]["multimedia"]."/hqdefault.jpg' class='img-thumbnail imgTablaMultimedia' width='100px'>";
-
-  				}
-
-
-  			}else{
-
-  				$vistaMultimedia = "<img src='vistas/img/multimedia/default/default.jpg' class='img-thumbnail imgTablaMultimedia' width='100px'>";
-
-  			}
-
-  			/*=============================================
-  			TRAER DETALLES
-  			=============================================*/
-
-  			$detalles = json_decode($productos[$i]["detalles"],true);
-
-  			if($productos[$i]["tipo"] == "fisico"){
-
-  				$talla = json_encode($detalles["Talla"]);
-				$color = json_encode($detalles["Color"]);
-				$marca = json_encode($detalles["Marca"]);
-
-				$vistaDetalles = "Talla: ".str_replace(array("[","]",'"'), "", $talla)." - Color: ".str_replace(array("[","]",'"'), "", $color)." - Marca: ".str_replace(array("[","]",'"'), "", $marca);
-
-
-  			}else{
-
-
-				$vistaDetalles = "Clases: ".$detalles["Clases"].", Tiempo: ".$detalles["Tiempo"].", Nivel: ".$detalles["Nivel"].", Acceso: ".$detalles["Acceso"].", Dispositivo: ".$detalles["Dispositivo"].", Certificado: ".$detalles["Certificado"];
-
-  			}
 
   			/*=============================================
   			TRAER PRECIO
@@ -166,7 +101,7 @@ class TablaProductos{
   			if($productos[$i]["precio"] == 0){
 
   				$precio = "Gratis";
-  			
+
   			}else{
 
   				$precio = "$ ".number_format($productos[$i]["precio"],2);
@@ -174,26 +109,12 @@ class TablaProductos{
   			}
 
   			/*=============================================
-  			TRAER ENTREGA
-  			=============================================*/
-
-  			if($productos[$i]["entrega"] == 0){
-
-  				$entrega = "Inmediata";
-  			
-  			}else{
-
-  				$entrega = $productos[$i]["entrega"]. " días hábiles";
-
-  			}
-
-  			/*=============================================
   			REVISAR SI HAY OFERTAS
   			=============================================*/
-  			
+
 			if($productos[$i]["oferta"] != 0){
 
-				if($productos[$i]["precioOferta"] != 0){	
+				if($productos[$i]["precioOferta"] != 0){
 
 					$tipoOferta = "PRECIO";
 					$valorOferta = "$ ".number_format($productos[$i]["precioOferta"],2);
@@ -201,15 +122,15 @@ class TablaProductos{
 				}else{
 
 					$tipoOferta = "DESCUENTO";
-					$valorOferta = $productos[$i]["descuentoOferta"]." %";	
+					$valorOferta = $productos[$i]["descuentoOferta"]." %";
 
-				}	
+				}
 
 			}else{
 
 				$tipoOferta = "No tiene oferta";
 				$valorOferta = 0;
-				
+
 			}
 
   			/*=============================================
@@ -230,7 +151,7 @@ class TablaProductos{
   			TRAER LAS ACCIONES
   			=============================================*/
 
-  			$acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' imgOferta='".$productos[$i]["imgOferta"]."' rutaCabecera='".$productos[$i]["ruta"]."' imgPortada='".$cabeceras["portada"]."' imgPrincipal='".$productos[$i]["portada"]."'><i class='fa fa-times'></i></button></div>";
+  			$acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' imgOferta='".$productos[$i]["imgOferta"]."' rutaCabecera='".$productos[$i]["ruta"]."'><i class='fa fa-times'></i></button></div>";
 
   			/*=============================================
   			CONSTRUIR LOS DATOS JSON
@@ -238,28 +159,21 @@ class TablaProductos{
 
 
 			$datosJson .='[
-					
+
 					"'.($i+1).'",
 					"'.$productos[$i]["titulo"].'",
 					"'.$categoria.'",
 					"'.$subcategoria.'",
 					"'.$productos[$i]["ruta"].'",
 					"'.$estado.'",
-					"'.$productos[$i]["tipo"].'",
-					"'.$cabeceras["descripcion"].'",
-				  	"'.$cabeceras["palabrasClaves"].'",
-				  	"'.$imagenPortada.'",
+          "'.$productos[$i]["descripcion"].'",
 				  	"'.$imagenPrincipal.'",
-			 	  	"'.$vistaMultimedia.'",
-				  	"'.$vistaDetalles.'",
 		  			"'.$precio.'",
-				  	"'.$productos[$i]["peso"].' kg",
-				  	"'.$entrega.'",
 				  	"'.$tipoOferta.'",
 				  	"'.$valorOferta.'",
 				  	"'.$imgOferta.'",
-				  	"'.$productos[$i]["finOferta"].'",			
-				  	"'.$acciones.'"	   
+				  	"'.$productos[$i]["finOferta"].'",
+				  	"'.$acciones.'"
 
 			],';
 
@@ -280,6 +194,6 @@ class TablaProductos{
 
 /*=============================================
 ACTIVAR TABLA DE PRODUCTOS
-=============================================*/ 
+=============================================*/
 $activarProductos = new TablaProductos();
 $activarProductos -> mostrarTablaProductos();

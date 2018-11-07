@@ -6,16 +6,15 @@ require_once "../modelos/subcategorias.modelo.php";
 require_once "../controladores/categorias.controlador.php";
 require_once "../modelos/categorias.modelo.php";
 
-require_once "../controladores/cabeceras.controlador.php";
-require_once "../modelos/cabeceras.modelo.php";
+require_once "../modelos/conexion.php";
 
 class TablaSubCategorias{
 
   /*=============================================
   MOSTRAR LA TABLA DE SUBCATEGORÍAS
-  =============================================*/ 
+  =============================================*/
 
-  public function mostrarTablaSubCategoria(){	
+  public function mostrarTablaSubCategoria(){
 
   	$item = null;
   	$valor = null;
@@ -40,7 +39,7 @@ class TablaSubCategorias{
 			if($categorias["categoria"] == ""){
 
 				$categoria = "SIN CATEGORÍA";
-			
+
 			}else{
 
 				$categoria = $categorias["categoria"];
@@ -66,64 +65,11 @@ class TablaSubCategorias{
 
   			$estado = "<button class='btn btn-xs btnActivar ".$colorEstado."' idSubCategoria='". $subcategorias[$i]["id"]."' estadoSubCategoria='".$estadoSubCategoria."'>".$textoEstado."</button>";
 
-  			/*=============================================
-  			REVISAR IMAGEN PORTADA
-  			=============================================*/
-
-			$item2 = "ruta";
-			$valor2 = $subcategorias[$i]["ruta"];
-
-			$cabeceras = ControladorCabeceras::ctrMostrarCabeceras($item2, $valor2);
-
-  			if($cabeceras["portada"] != ""){
-
-  				$imagenPortada = "<img src='".$cabeceras["portada"]."' class='img-thumbnail imgPortadaSubCategorias' width='100px'>";
-
-  			}else{
-
-  				$imagenPortada = "<img src='vistas/img/cabeceras/default/default.jpg' class='img-thumbnail imgPortadaSubCategorias' width='100px'>";
-  			}
-
-			/*=============================================
-			REVISAR OFERTAS
-			=============================================*/
-
-			if($subcategorias[$i]["oferta"] != 0){
-
-				if($subcategorias[$i]["precioOferta"] != 0){	
-
-					$tipoOferta = "PRECIO";
-					$valorOferta = "$ ".number_format($subcategorias[$i]["precioOferta"],2);
-
-				}else{
-
-					$tipoOferta = "DESCUENTO";
-					$valorOferta = $subcategorias[$i]["descuentoOferta"]." %";	
-
-				}	
-
-			}else{
-
-				$tipoOferta = "No tiene oferta";
-				$valorOferta = 0;
-				
-			}
-
-  			if($subcategorias[$i]["imgOferta"] != ""){
-
-	  			$imgOferta = "<img src='".$subcategorias[$i]["imgOferta"]."' class='img-thumbnail imgTablaSubCategorias' width='100px'>";
-
-	  		}else{
-
-	  			$imgOferta = "<img src='vistas/img/ofertas/default/default.jpg' class='img-thumbnail imgTablaSubCategorias' width='100px'>";
-
-	  		}
-
 	  		/*=============================================
   			CREAR LAS ACCIONES
   			=============================================*/
 
-  			$acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubCategoria' idSubCategoria='".$subcategorias[$i]["id"]."' data-toggle='modal' data-target='#modalEditarSubCategoria'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarSubCategoria' idSubCategoria='".$subcategorias[$i]["id"]."' imgOferta='".$subcategorias[$i]["imgOferta"]."' rutaCabecera='".$subcategorias[$i]["ruta"]."' imgPortada='".$cabeceras["portada"]."'><i class='fa fa-times'></i></button></div>";
+  			$acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarSubCategoria' idSubCategoria='".$subcategorias[$i]["id"]."' data-toggle='modal' data-target='#modalEditarSubCategoria'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarSubCategoria' idSubCategoria='".$subcategorias[$i]["id"]."'><i class='fa fa-times'></i></button></div>";
 
 
 			 $datosJson .=  '
@@ -133,33 +79,26 @@ class TablaSubCategorias{
 		      "'.$categoria.'",
 		      "'.$subcategorias[$i]["ruta"].'",
 		      "'.$estado.'",
-		      "'.$cabeceras["descripcion"].'",
-		      "'.$cabeceras["palabrasClaves"].'",
-		      "'.$imagenPortada.'",
-			  "'.$tipoOferta.'",
-   	  		  "'.$valorOferta.'",
-              "'.$imgOferta.'",
-              "'.$subcategorias[$i]["finOferta"].'",			
-	          "'.$acciones.'"
+          "'.$subcategorias[$i]["descripcion"].'",
+	        "'.$acciones.'"
 	    	],';
-									
+
 			}
 
 	        $datosJson =  substr($datosJson, 0, -1);
 	        $datosJson .=  '
-            
+
           ]
         }';
 
-    echo $datosJson;    
-  	
+    echo $datosJson;
+
   }
 
 }
 
 /*=============================================
 ACTIVAR TABLA DE SUBCATEGORÍAS
-=============================================*/ 
+=============================================*/
 $activarSubcategoria = new TablaSubCategorias();
 $activarSubcategoria -> mostrarTablaSubCategoria();
-
