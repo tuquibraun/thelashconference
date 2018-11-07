@@ -106,7 +106,13 @@ if(isset($_SESSION["validarSesion"])){
           }
 
           ?>
-
+		  <div class="carrito" id="carrito">
+			  <a href="<?php echo $url;?>carrito-de-compras">
+		  		<button>
+					  carrito
+				  </button>
+			  </a>
+		  </div>
 
             <li class="nav-item">
                 <a href="#welcome" class="nav-link">inicio</a>
