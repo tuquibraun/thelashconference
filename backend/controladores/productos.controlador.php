@@ -41,89 +41,6 @@ class ControladorProductos{
 		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor);
 
 		return $respuesta;
-	
-	}
-
-	/*=============================================
-	SUBIR MULTIMEDIA
-	=============================================*/
-
-	static public function ctrSubirMultimedia($datos, $ruta){
-
-		if(isset($datos["tmp_name"]) && !empty($datos["tmp_name"])){
-
-			/*=============================================
-			DEFINIMOS LAS MEDIDAS
-			=============================================*/
-
-			list($ancho, $alto) = getimagesize($datos["tmp_name"]);	
-
-			$nuevoAncho = 1000;
-			$nuevoAlto = 1000;
-
-			/*=============================================
-			CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DE LA MULTIMEDIA
-			=============================================*/
-
-			$directorio = "../vistas/img/multimedia/".$ruta;
-
-			/*=============================================
-			PRIMERO PREGUNTAMOS SI EXISTE UN DIRECTORIO DE MULTIMEDIA CON ESTA RUTA
-			=============================================*/
-
-			if (!file_exists($directorio)){
-
-				mkdir($directorio, 0755);
-			
-			}
-
-			/*=============================================
-			DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-			=============================================*/
-
-			if($datos["type"] == "image/jpeg"){
-
-				/*=============================================
-				GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-				=============================================*/
-
-				$rutaMultimedia = $directorio."/".$datos["name"];
-
-				$origen = imagecreatefromjpeg($datos["tmp_name"]);						
-
-				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-				imagejpeg($destino, $rutaMultimedia);
-
-			}
-
-			if($datos["type"] == "image/png"){
-
-				/*=============================================
-				GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-				=============================================*/
-
-				$rutaMultimedia = $directorio."/".$datos["name"];
-
-				$origen = imagecreatefrompng($datos["tmp_name"]);						
-
-				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-				imagealphablending($destino, FALSE);
-		
-				imagesavealpha($destino, TRUE);
-
-				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-				imagepng($destino, $rutaMultimedia);
-
-			}
-
-			return $rutaMultimedia;	
-
-		}
 
 	}
 
@@ -138,73 +55,6 @@ class ControladorProductos{
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $datos["tituloProducto"]) && preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["descripcionProducto"]) ){
 
 				/*=============================================
-				VALIDAR IMAGEN PORTADA
-				=============================================*/
-
-				$rutaPortada = "../vistas/img/cabeceras/default/default.jpg";
-
-				if(isset($datos["fotoPortada"]["tmp_name"]) && !empty($datos["fotoPortada"]["tmp_name"])){
-
-					/*=============================================
-					DEFINIMOS LAS MEDIDAS
-					=============================================*/
-
-					list($ancho, $alto) = getimagesize($datos["fotoPortada"]["tmp_name"]);	
-
-					$nuevoAncho = 1280;
-					$nuevoAlto = 720;
-
-
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($datos["fotoPortada"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$rutaPortada = "../vistas/img/cabeceras/".$datos["rutaProducto"].".jpg";
-
-						$origen = imagecreatefromjpeg($datos["fotoPortada"]["tmp_name"]);						
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $rutaPortada);
-
-					}
-
-					if($datos["fotoPortada"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$rutaPortada = "../vistas/img/cabeceras/".$datos["rutaProducto"].".png";
-
-						$origen = imagecreatefrompng($datos["fotoPortada"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagealphablending($destino, FALSE);
-				
-						imagesavealpha($destino, TRUE);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $rutaPortada);
-
-					}
-
-				}
-
-				/*=============================================
 				VALIDAR IMAGEN PRINCIPAL
 				=============================================*/
 
@@ -216,7 +66,7 @@ class ControladorProductos{
 					DEFINIMOS LAS MEDIDAS
 					=============================================*/
 
-					list($ancho, $alto) = getimagesize($datos["fotoPrincipal"]["tmp_name"]);	
+					list($ancho, $alto) = getimagesize($datos["fotoPrincipal"]["tmp_name"]);
 
 					$nuevoAncho = 400;
 					$nuevoAlto = 450;
@@ -235,7 +85,7 @@ class ControladorProductos{
 
 						$rutaFotoPrincipal = "../vistas/img/productos/".$datos["rutaProducto"].".jpg";
 
-						$origen = imagecreatefromjpeg($datos["fotoPrincipal"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($datos["fotoPrincipal"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -255,12 +105,12 @@ class ControladorProductos{
 
 						$rutaFotoPrincipal = "../vistas/img/productos/".$datos["rutaProducto"].".png";
 
-						$origen = imagecreatefrompng($datos["fotoPrincipal"]["tmp_name"]);						
+						$origen = imagecreatefrompng($datos["fotoPrincipal"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
 						imagealphablending($destino, FALSE);
-				
+
 						imagesavealpha($destino, TRUE);
 
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -303,7 +153,7 @@ class ControladorProductos{
 
 						$rutaOferta = "../vistas/img/ofertas/".$datos["rutaProducto"].".jpg";
 
-						$origen = imagecreatefromjpeg($datos["fotoOferta"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($datos["fotoOferta"]["tmp_name"]);
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -322,11 +172,11 @@ class ControladorProductos{
 
 						$rutaOferta = "../vistas/img/ofertas/".$datos["rutaProducto"].".png";
 
-						$origen = imagecreatefrompng($datos["fotoOferta"]["tmp_name"]);						
+						$origen = imagecreatefrompng($datos["fotoOferta"]["tmp_name"]);
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
 						imagealphablending($destino, FALSE);
-				
+
 						imagesavealpha($destino, TRUE);
 
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -347,19 +197,13 @@ class ControladorProductos{
 						   "titulo"=>$datos["tituloProducto"],
 						   "idCategoria"=>$datos["categoria"],
 						   "idSubCategoria"=>$datos["subCategoria"],
-						   "tipo"=>$datos["tipo"],
-						   "detalles"=>$datos["detalles"],
 						   "multimedia"=>$datos["multimedia"],
 						   "ruta"=>$datos["rutaProducto"],
 						   "estado"=> 1,
 						   "titular"=> substr($datos["descripcionProducto"], 0, 225)."...",
 						   "descripcion"=> $datos["descripcionProducto"],
-						   "palabrasClaves"=> $datos["pClavesProducto"],
 						   "precio"=> $datos["precio"],
-						   "peso"=> $datos["peso"],
-						   "entrega"=> $datos["entrega"],  
-						   "imgPortada"=>substr($rutaPortada,3),
-						   "imgFotoPrincipal"=>substr($rutaFotoPrincipal,3),
+						   "imagen"=>substr($rutaFotoPrincipal,3),
 						   "oferta"=>1,
 						   "precioOferta"=>$datos["precioOferta"],
 						   "descuentoOferta"=>$datos["descuentoOferta"],
@@ -374,19 +218,12 @@ class ControladorProductos{
 						   "titulo"=>$datos["tituloProducto"],
 						   "idCategoria"=>$datos["categoria"],
 						   "idSubCategoria"=>$datos["subCategoria"],
-						   "tipo"=>$datos["tipo"],
-						   "detalles"=>$datos["detalles"],
-						   "multimedia"=>$datos["multimedia"],
 						   "ruta"=>$datos["rutaProducto"],
 						   "estado"=> 1,
 						   "titular"=> substr($datos["descripcionProducto"], 0, 225)."...",
 						   "descripcion"=> $datos["descripcionProducto"],
-						   "palabrasClaves"=> $datos["pClavesProducto"],
+							 "imagen"=>substr($rutaFotoPrincipal,3),
 						   "precio"=> $datos["precio"],
-						   "peso"=> $datos["peso"],
-						   "entrega"=> $datos["entrega"],  
-						   "imgPortada"=>substr($rutaPortada,3),
-						   "imgFotoPrincipal"=>substr($rutaFotoPrincipal,3),
 						   "oferta"=>0,
 						   "precioOferta"=>0,
 						   "descuentoOferta"=>0,
@@ -396,12 +233,10 @@ class ControladorProductos{
 
 				}
 
-				ModeloCabeceras::mdlIngresarCabecera("cabeceras", $datosProducto);
-
 				$respuesta = ModeloProductos::mdlIngresarProducto("productos", $datosProducto);
 
 				return $respuesta;
-				
+
 
 			}else{
 
@@ -425,7 +260,7 @@ class ControladorProductos{
 
 
 			}
-		
+
 		}
 
 	}
@@ -439,122 +274,6 @@ class ControladorProductos{
 		if(isset($datos["idProducto"])){
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $datos["tituloProducto"])  && preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["descripcionProducto"]) ){
-
-				/*=============================================
-				ELIMINAR LAS FOTOS DE MULTIMEDIA DE LA CARPETA
-				=============================================*/
-
-				if($datos["tipo"] == "fisico"){
-
-					$item = "id";
-					$valor = $datos["idProducto"];
-
-					$traerProductos = ModeloProductos::mdlMostrarProductos("productos", $item, $valor);
-
-					foreach ($traerProductos as $key => $value) {
-					
-						$multimediaBD = json_decode($value["multimedia"],true);
-						$multimediaEditar = json_decode($datos["multimedia"],true);
-
-						$objectMultimediaBD = array();
-						$objectMultimediaEditar = array();
-
-						foreach ($multimediaBD as $key => $value) {
-
-						  array_push($objectMultimediaBD, $value["foto"]);
-
-						}
-
-						foreach ($multimediaEditar as $key => $value) {
-
-						  array_push($objectMultimediaEditar, $value["foto"]);
-
-						}
-
-						$borrarFoto = array_diff($objectMultimediaBD, $objectMultimediaEditar);
-
-						foreach ($borrarFoto as $key => $value) {
-							
-							unlink("../".$value);
-
-						}
-
-					}				
-
-				}
-
-				/*=============================================
-				VALIDAR IMAGEN PORTADA
-				=============================================*/
-
-				$rutaPortada = "../".$datos["antiguaFotoPortada"];
-
-				if(isset($datos["fotoPortada"]["tmp_name"]) && !empty($datos["fotoPortada"]["tmp_name"])){
-
-					/*=============================================
-					BORRAMOS ANTIGUA FOTO PORTADA
-					=============================================*/
-
-					unlink("../".$datos["antiguaFotoPortada"]);
-
-					/*=============================================
-					DEFINIMOS LAS MEDIDAS
-					=============================================*/
-
-					list($ancho, $alto) = getimagesize($datos["fotoPortada"]["tmp_name"]);	
-
-					$nuevoAncho = 1280;
-					$nuevoAlto = 720;
-
-
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($datos["fotoPortada"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$rutaPortada = "../vistas/img/cabeceras/".$datos["rutaProducto"].".jpg";
-
-						$origen = imagecreatefromjpeg($datos["fotoPortada"]["tmp_name"]);						
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $rutaPortada);
-
-					}
-
-					if($datos["fotoPortada"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$rutaPortada = "../vistas/img/cabeceras/".$datos["rutaProducto"].".png";
-
-						$origen = imagecreatefrompng($datos["fotoPortada"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagealphablending($destino, FALSE);
-				
-						imagesavealpha($destino, TRUE);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $rutaPortada);
-
-					}
-
-				}
 
 				/*=============================================
 				VALIDAR IMAGEN PRINCIPAL
@@ -574,7 +293,7 @@ class ControladorProductos{
 					DEFINIMOS LAS MEDIDAS
 					=============================================*/
 
-					list($ancho, $alto) = getimagesize($datos["fotoPrincipal"]["tmp_name"]);	
+					list($ancho, $alto) = getimagesize($datos["fotoPrincipal"]["tmp_name"]);
 
 					$nuevoAncho = 400;
 					$nuevoAlto = 450;
@@ -594,7 +313,7 @@ class ControladorProductos{
 
 						$rutaFotoPrincipal = "../vistas/img/productos/".$datos["rutaProducto"].".jpg";
 
-						$origen = imagecreatefromjpeg($datos["fotoPrincipal"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($datos["fotoPrincipal"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -614,12 +333,12 @@ class ControladorProductos{
 
 						$rutaFotoPrincipal = "../vistas/img/productos/".$datos["rutaProducto"].".png";
 
-						$origen = imagecreatefrompng($datos["fotoPrincipal"]["tmp_name"]);						
+						$origen = imagecreatefrompng($datos["fotoPrincipal"]["tmp_name"]);
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
 						imagealphablending($destino, FALSE);
-				
+
 						imagesavealpha($destino, TRUE);
 
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -672,7 +391,7 @@ class ControladorProductos{
 
 						$rutaOferta = "../vistas/img/ofertas/".$datos["rutaProducto"].".jpg";
 
-						$origen = imagecreatefromjpeg($datos["fotoOferta"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($datos["fotoOferta"]["tmp_name"]);
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -691,11 +410,11 @@ class ControladorProductos{
 
 						$rutaOferta = "../vistas/img/ofertas/".$datos["rutaProducto"].".png";
 
-						$origen = imagecreatefrompng($datos["fotoOferta"]["tmp_name"]);						
+						$origen = imagecreatefrompng($datos["fotoOferta"]["tmp_name"]);
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
 						imagealphablending($destino, FALSE);
-				
+
 						imagesavealpha($destino, TRUE);
 
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -704,7 +423,7 @@ class ControladorProductos{
 
 					}
 
-				}			
+				}
 
 				/*=============================================
 				PREGUNTAMOS SI VIENE OFERTE EN CAMINO
@@ -717,20 +436,12 @@ class ControladorProductos{
 								   "titulo"=>$datos["tituloProducto"],
 								   "idCategoria"=>$datos["categoria"],
 								   "idSubCategoria"=>$datos["subCategoria"],
-								   "tipo"=>$datos["tipo"],
-								   "detalles"=>$datos["detalles"],
-								   "multimedia"=>$datos["multimedia"],
 								   "ruta"=>$datos["rutaProducto"],
 								   "estado"=> 1,
-								   "idCabecera"=>$datos["idCabecera"],
 								   "titular"=> substr($datos["descripcionProducto"], 0, 225)."...",
 								   "descripcion"=> $datos["descripcionProducto"],
-								   "palabrasClaves"=> $datos["pClavesProducto"],
+									 "imagen"=>substr($rutaFotoPrincipal,3),
 								   "precio"=> $datos["precio"],
-								   "peso"=> $datos["peso"],
-								   "entrega"=> $datos["entrega"],  
-								   "imgPortada"=>substr($rutaPortada,3),
-								   "imgFotoPrincipal"=>substr($rutaFotoPrincipal,3),
 								   "oferta"=>1,
 								   "precioOferta"=>$datos["precioOferta"],
 								   "descuentoOferta"=>$datos["descuentoOferta"],
@@ -745,30 +456,20 @@ class ControladorProductos{
 								   "titulo"=>$datos["tituloProducto"],
 								   "idCategoria"=>$datos["categoria"],
 								   "idSubCategoria"=>$datos["subCategoria"],
-								   "tipo"=>$datos["tipo"],
-								   "detalles"=>$datos["detalles"],
-								   "multimedia"=>$datos["multimedia"],
 								   "ruta"=>$datos["rutaProducto"],
 								   "estado"=> 1,
-								   "idCabecera"=>$datos["idCabecera"],
 								   "titular"=> substr($datos["descripcionProducto"], 0, 225)."...",
 								   "descripcion"=> $datos["descripcionProducto"],
-								   "palabrasClaves"=> $datos["pClavesProducto"],
+									 "imagen"=>substr($rutaFotoPrincipal,3),
 								   "precio"=> $datos["precio"],
-								   "peso"=> $datos["peso"],
-								   "entrega"=> $datos["entrega"],
-								   "imgPortada"=>substr($rutaPortada,3),
-								   "imgFotoPrincipal"=>substr($rutaFotoPrincipal,3),
 								   "oferta"=>0,
 								   "precioOferta"=>0,
 								   "descuentoOferta"=>0,
-								   "imgOferta"=>"",								   
+								   "imgOferta"=>"",
 								   "finOferta"=>""
 								   );
 
 				}
-
-				ModeloCabeceras::mdlEditarCabecera("cabeceras", $datosProducto);
 
 				$respuesta = ModeloProductos::mdlEditarProducto("productos", $datosProducto);
 
@@ -797,7 +498,7 @@ class ControladorProductos{
 			}
 
 		}
-		
+
 	}
 
 	/*=============================================
@@ -811,26 +512,12 @@ class ControladorProductos{
 			$datos = $_GET["idProducto"];
 
 			/*=============================================
-			ELIMINAR MULTIMEDIA
-			=============================================*/
-
-			$borrar = glob("vistas/img/multimedia/".$_GET["rutaCabecera"]."/*");
-
-				foreach($borrar as $file){
-
-					unlink($file);
-
-				}
-
-			rmdir("vistas/img/multimedia/".$_GET["rutaCabecera"]);
-
-			/*=============================================
 			ELIMINAR FOTO PRINCIPAL
 			=============================================*/
 
 			if($_GET["imgPrincipal"] != "" && $_GET["imgPrincipal"] != "vistas/img/productos/default/default.jpg"){
 
-				unlink($_GET["imgPrincipal"]);		
+				unlink($_GET["imgPrincipal"]);
 
 			}
 
@@ -840,21 +527,9 @@ class ControladorProductos{
 
 			if($_GET["imgOferta"] != ""){
 
-				unlink($_GET["imgOferta"]);		
+				unlink($_GET["imgOferta"]);
 
 			}
-
-			/*=============================================
-			ELIMINAR CABECERA
-			=============================================*/
-
-			if($_GET["imgPortada"] != "" && $_GET["imgPortada"] != "vistas/img/cabeceras/default/default.jpg"){
-
-				unlink($_GET["imgPortada"]);		
-
-			}
-
-			ModeloCabeceras::mdlEliminarCabecera("cabeceras", $_GET["rutaCabecera"]);
 
 			$respuesta = ModeloProductos::mdlEliminarProducto("productos", $datos);
 
@@ -877,9 +552,7 @@ class ControladorProductos{
 
 				</script>';
 
-			}		
-
-
+			}
 
 		}
 

@@ -31,9 +31,9 @@ class ModeloCategorias{
 		}
 
 		$stmt -> close();
-		
+
 		$stmt = null;
-	
+
 	}
 
 	/*=============================================
@@ -50,10 +50,10 @@ class ModeloCategorias{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 
@@ -69,16 +69,14 @@ class ModeloCategorias{
 
 	static public function mdlIngresarCategoria($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(categoria, ruta, estado, oferta, precioOferta, descuentoOferta, imgOferta, finOferta) VALUES (:categoria, :ruta, :estado, :oferta, :precioOferta, :descuentoOferta, :imgOferta, :finOferta)");
+		echo "<script> console.log('lala') </script>";
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(categoria, descripcion, ruta, estado) VALUES (:categoria, :descripcion, :ruta, :estado)");
 
 		$stmt->bindParam(":categoria", $datos["categoria"], PDO::PARAM_STR);
+		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
 		$stmt->bindParam(":ruta", $datos["ruta"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
-		$stmt->bindParam(":oferta", $datos["oferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":precioOferta", $datos["precioOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":descuentoOferta", $datos["descuentoOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":imgOferta", $datos["imgOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":finOferta", $datos["finOferta"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -87,7 +85,7 @@ class ModeloCategorias{
 		}else{
 
 			return "error";
-		
+
 		}
 
 		$stmt->close();
@@ -101,16 +99,12 @@ class ModeloCategorias{
 
 	static public function mdlEditarCategoria($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET categoria = :categoria, ruta = :ruta, estado = :estado, oferta = :oferta, precioOferta = :precioOferta, descuentoOferta = :descuentoOferta, imgOferta = :imgOferta, finOferta = :finOferta WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET categoria = :categoria, descripcion = :descripcion, ruta = :ruta, estado = :estado WHERE id = :id");
 
 		$stmt -> bindParam(":categoria", $datos["categoria"], PDO::PARAM_STR);
-		$stmt->bindParam(":ruta", $datos["ruta"], PDO::PARAM_STR);
-		$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
-		$stmt->bindParam(":oferta", $datos["oferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":precioOferta", $datos["precioOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":descuentoOferta", $datos["descuentoOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":imgOferta", $datos["imgOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":finOferta", $datos["finOferta"], PDO::PARAM_STR);
+		$stmt-> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt-> bindParam(":ruta", $datos["ruta"], PDO::PARAM_STR);
+		$stmt-> bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
@@ -120,7 +114,7 @@ class ModeloCategorias{
 		}else{
 
 			return "error";
-		
+
 		}
 
 		$stmt->close();
@@ -141,10 +135,10 @@ class ModeloCategorias{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 

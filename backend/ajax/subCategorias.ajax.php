@@ -10,11 +10,13 @@ require_once "../modelos/categorias.modelo.php";
 require_once "../controladores/productos.controlador.php";
 require_once "../modelos/productos.modelo.php";
 
+require_once "../modelos/conexion.php";
+
 class AjaxSubCategorias{
 
 	/*=============================================
   	ACTIVAR SUBCATEGORIA
- 	=============================================*/	
+ 	=============================================*/
 
 	public $activarSubCategoria;
 	public $activarId;
@@ -27,7 +29,7 @@ class AjaxSubCategorias{
 		$valor1 = $this->activarSubCategoria;
 
 		$item2 = "id";
-		$valor2 = $this->activarId;	
+		$valor2 = $this->activarId;
 
 		ModeloProductos::mdlActualizarProductos("productos", $item1, $valor1, "id_subcategoria", $valor2);
 
@@ -39,7 +41,7 @@ class AjaxSubCategorias{
 
 	/*=============================================
 	VALIDAR NO REPETIR SUBCATEGORÍA
-	=============================================*/	
+	=============================================*/
 
 	public $validarSubCategoria;
 
@@ -56,7 +58,7 @@ class AjaxSubCategorias{
 
 	/*=============================================
 	EDITAR SUBCATEGORIA
-	=============================================*/	
+	=============================================*/
 
 	public $idSubCategoria;
 
@@ -73,7 +75,7 @@ class AjaxSubCategorias{
 
 	/*=============================================
 	TRAER SUBCATEGORIAS DE ACUERDO A LA CATEGORÍA
-	=============================================*/	
+	=============================================*/
 
 	public $idCategoria;
 
@@ -92,7 +94,7 @@ class AjaxSubCategorias{
 
 /*=============================================
 ACTIVAR SUBCATEGORIA
-=============================================*/	
+=============================================*/
 
 if(isset($_POST["activarSubCategoria"])){
 

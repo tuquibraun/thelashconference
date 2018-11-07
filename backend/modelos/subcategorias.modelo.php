@@ -18,47 +18,16 @@ class ModeloSubCategorias{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 
 		$stmt -> close();
 
 		$stmt = null;
-		
-	}
-
-	/*=============================================
-	ACTUALIZAR OFERTA SUBCATEGORIAS
-	=============================================*/
-	static public function mdlActualizarOfertaSubcategorias($tabla, $datos, $ofertadoPor){
-
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $ofertadoPor = :$ofertadoPor, oferta = :oferta, precioOferta = :precioOferta, descuentoOferta = :descuentoOferta, imgOferta = :imgOferta, finOferta = :finOferta WHERE id_categoria = :id_categoria");
-
-		$stmt->bindParam(":".$ofertadoPor, $datos["oferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":oferta", $datos["oferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":precioOferta", $datos["precioOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":descuentoOferta", $datos["descuentoOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":imgOferta", $datos["imgOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":finOferta", $datos["finOferta"], PDO::PARAM_STR);
-		$stmt -> bindParam(":id_categoria", $datos["id"], PDO::PARAM_INT);
-
-		if($stmt->execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-		
-		}
-
-		$stmt->close();
-		$stmt = null;
-
 
 	}
 
@@ -100,17 +69,14 @@ class ModeloSubCategorias{
 
 	static public function mdlIngresarSubCategoria($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(subcategoria, id_categoria, ruta, estado, oferta, precioOferta, descuentoOferta, imgOferta, finOferta) VALUES (:subcategoria, :id_categoria, :ruta, :estado, :oferta, :precioOferta, :descuentoOferta, :imgOferta, :finOferta)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(subcategoria, id_categoria, ruta, estado, descripcion, palabrasClave) VALUES (:subcategoria, :id_categoria, :ruta, :estado, :descripcion, :palabrasClave)");
 
 		$stmt->bindParam(":subcategoria", $datos["subcategoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_categoria", $datos["idCategoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":ruta", $datos["ruta"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
-		$stmt->bindParam(":oferta", $datos["oferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":precioOferta", $datos["precioOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":descuentoOferta", $datos["descuentoOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":imgOferta", $datos["imgOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":finOferta", $datos["finOferta"], PDO::PARAM_STR);
+		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(":palabrasClave", $datos["palabrasClave"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -119,7 +85,7 @@ class ModeloSubCategorias{
 		}else{
 
 			return "error";
-		
+
 		}
 
 		$stmt->close();
@@ -133,17 +99,14 @@ class ModeloSubCategorias{
 
 	static public function mdlEditarSubCategoria($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET subcategoria = :subcategoria, id_categoria = :id_categoria, ruta = :ruta, estado = :estado, oferta = :oferta, precioOferta = :precioOferta, descuentoOferta = :descuentoOferta, imgOferta = :imgOferta, finOferta = :finOferta WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET subcategoria = :subcategoria, id_categoria = :id_categoria, ruta = :ruta, estado = :estado, descripcion = :descripcion, palabrasClave = :palabrasClave WHERE id = :id");
 
 		$stmt->bindParam(":subcategoria", $datos["subcategoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_categoria", $datos["idCategoria"], PDO::PARAM_STR);
 		$stmt->bindParam(":ruta", $datos["ruta"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
-		$stmt->bindParam(":oferta", $datos["oferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":precioOferta", $datos["precioOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":descuentoOferta", $datos["descuentoOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":imgOferta", $datos["imgOferta"], PDO::PARAM_STR);
-		$stmt->bindParam(":finOferta", $datos["finOferta"], PDO::PARAM_STR);
+		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(":palabrasClave", $datos["palabrasClave"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 
 		if($stmt->execute()){
@@ -153,7 +116,7 @@ class ModeloSubCategorias{
 		}else{
 
 			return "error";
-		
+
 		}
 
 		$stmt->close();
@@ -174,10 +137,10 @@ class ModeloSubCategorias{
 		if($stmt -> execute()){
 
 			return "ok";
-		
+
 		}else{
 
-			return "error";	
+			return "error";
 
 		}
 
