@@ -5,7 +5,7 @@
 body{
     font-family: 'Ubuntu', sans-serif;
     
-    background: url(../img/background.svg) no-repeat;
+    /*background: url(../img/background.svg) no-repeat;*/
 
 }
 
@@ -533,4 +533,14 @@ div.welcome-section{
 .the-footer h2{
     font-size: 1em;
     font-weight: 200;
+}
+/*=============================
+         inscripcion online
+===============================*/
+.online-section{
+    margin: 0;
+    padding: 0;
+}
+.online-section .content-wrap{
+    margin-left: 150px;
 }
