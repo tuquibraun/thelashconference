@@ -10,7 +10,7 @@
                     Veni a la conferencia internacional mas prestigiosa de latinoamerica con oradores de todo el mundo, ademas participa de una cena de gala comprando tu entrada vip.
                     Enterate quienes vienen a dar las charlas mas importantes a nivel mundial
                 </div>
-                <button type="button">Oradores!</button>
+                <a href="<?php $url ; ?>#people"><button type="button">Oradores!</button></a>
                 <div class="right-conf">
                     <img src="img/Sheraton-ConferenceRoom.jpg" alt="">
                 </div>

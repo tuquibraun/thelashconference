@@ -34,11 +34,11 @@ class ControladorProductos{
 	MOSTRAR PRODUCTOS
 	=============================================*/
 
-	static public function ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo){
+	static public function ctrMostrarProductos($item, $valor){
 
 		$tabla = "productos";
 
-		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $ordenar, $item, $valor, $base, $tope, $modo);
+		$respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor);
 
 		return $respuesta;
 	}
@@ -66,34 +66,6 @@ class ControladorProductos{
 		$tabla = "productos";
 
 		$respuesta = ModeloProductos::mdlListarProductos($tabla, $ordenar, $item, $valor);
-
-		return $respuesta;
-
-	}
-
-	/*=============================================
-	MOSTRAR BANNER
-	=============================================*/
-
-	static public function ctrMostrarBanner($ruta){
-
-		$tabla = "banner";
-
-		$respuesta = ModeloProductos::mdlMostrarBanner($tabla, $ruta);
-
-		return $respuesta;
-
-	}
-
-	/*=============================================
-	BUSCADOR
-	=============================================*/
-
-	static public function ctrBuscarProductos($busqueda, $ordenar, $modo, $base, $tope){
-
-		$tabla = "productos";
-
-		$respuesta = ModeloProductos::mdlBuscarProductos($tabla, $busqueda, $ordenar, $modo, $base, $tope);
 
 		return $respuesta;
 

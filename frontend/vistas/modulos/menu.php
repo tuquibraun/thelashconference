@@ -32,7 +32,7 @@ if(isset($_SESSION["validarSesion"])){
     <ul class="side-nav">
 
       <li class="nav-item">
-          <a href="#" class="site-name">the lash conference</a>
+          <a href="<?php echo $url;?>" class="site-name">the lash conference</a>
       </li>
     <!--=====================================
       REGISTRO
@@ -115,16 +115,16 @@ if(isset($_SESSION["validarSesion"])){
 		  </div>
 
             <li class="nav-item">
-                <a href="#welcome" class="nav-link">inicio</a>
+                <a href="<?php echo $url;?>#welcome" class="nav-link">inicio</a>
             </li>
             <li class="nav-item">
-                <a href="#modalidades" class="nav-link">competencia</a>
+                <a href="<?php echo $url;?>#modalidades" class="nav-link">competencia</a>
             </li>
             <li class="nav-item">
-                <a href="#people" class="nav-link">oradores &amp; jurado</a>
+                <a href="<?php echo $url;?>#people" class="nav-link">oradores &amp; jurado</a>
             </li>
             <li class="nav-item">
-                <a href="#sponsor" class="nav-link">sponsors</a>
+                <a href="<?php echo $url;?>#sponsor" class="nav-link">sponsors</a>
             </li>
         </ul>
 </nav>
