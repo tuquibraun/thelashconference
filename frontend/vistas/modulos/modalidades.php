@@ -26,13 +26,13 @@
                         <h2>Copa America 2019</h2>
                         <h3>Nominaciones</h3>
                         <?php
-                            include "vistas/modulos/nominaciones.php";
+                            //include "vistas/modulos/nominaciones.php";
                         ?>
-                        
+
                     </div>
                     <a href="<?php $url ; ?>inscripcion-online"><button type="button">inscribite</button></a>
                 </div>
-                
+
             </div>
         </div>
     </div>

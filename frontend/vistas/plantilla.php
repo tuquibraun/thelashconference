@@ -10,9 +10,9 @@
 
       session_start();
 
-      
+
       $servidor = Ruta::ctrRutaServidor();
-      
+
       $url = Ruta::ctrRuta();
 
      ?>
@@ -51,7 +51,7 @@
 
     <?php
 
-    
+
       include "vistas/modulos/menu.php";
 
 
@@ -65,7 +65,7 @@
             if($ruta != null || $rutas[0] == "inscripcion-online"){
 
                 include "modulos/inscripcion-online.php";
-        
+
             }elseif ($ruta != null || $rutas[0] == "carrito-de-compras") {
                 include "modulos/carrito-de-compras.php";
             }
@@ -76,7 +76,7 @@
             include "vistas/modulos/modalidades.php";
 
             include "vistas/modulos/personas.php";
-            
+
             include "vistas/modulos/sponsors.php";
 
             include "vistas/modulos/footer.php";
