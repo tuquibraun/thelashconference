@@ -118,13 +118,13 @@ if(isset($_SESSION["validarSesion"])){
                 <a href="#welcome" class="nav-link">inicio</a>
             </li>
             <li class="nav-item">
+                <a href="#modalidades" class="nav-link">competencia</a>
+            </li>
+            <li class="nav-item">
                 <a href="#people" class="nav-link">oradores &amp; jurado</a>
             </li>
             <li class="nav-item">
                 <a href="#sponsor" class="nav-link">sponsors</a>
-            </li>
-            <li class="nav-item">
-                <a href="#modalidades" class="nav-link">competencia</a>
             </li>
         </ul>
 </nav>

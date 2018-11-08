@@ -8,7 +8,7 @@ class Ruta{
 
 	public function ctrRuta(){
 
-		return "http://localhost/";
+		return "http://localhost/thelashconference/maquetado2/frontend/";
 
 	}
 

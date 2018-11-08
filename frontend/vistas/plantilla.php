@@ -10,155 +10,83 @@
 
       session_start();
 
-
+      
+      $servidor = Ruta::ctrRutaServidor();
+      
+      $url = Ruta::ctrRuta();
 
      ?>
-     <link rel="stylesheet" href="vistas/css/plugins/bootstrap.min.css">
+     <link rel="stylesheet" href="<?php echo $url ; ?>vistas/css/plugins/bootstrap.min.css">
 
-	<link rel="stylesheet" href="vistas/css/plugins/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo $url ; ?>vistas/css/plugins/font-awesome.min.css">
 
-	<link rel="stylesheet" href="vistas/css/plugins/flexslider.css">
+	<link rel="stylesheet" href="<?php echo $url ; ?>vistas/css/plugins/flexslider.css">
 
-	<link rel="stylesheet" href="vistas/css/plugins/sweetalert.css">
+	<link rel="stylesheet" href="<?php echo $url ; ?>vistas/css/plugins/sweetalert.css">
 
-	<link rel="stylesheet" href="vistas/css/plugins/dscountdown.css">
+	<link rel="stylesheet" href="<?php echo $url ; ?>vistas/css/plugins/dscountdown.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="vistas/css/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo $url ; ?>vistas/css/main.css" />
 
-    <script src="vistas/js/plugins/jquery.min.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/plugins/jquery.min.js"></script>
 
-    <script src="vistas/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/plugins/bootstrap.min.js"></script>
 
-    <script src="vistas/js/plugins/jquery.easing.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/plugins/jquery.easing.js"></script>
 
-    <script src="vistas/js/plugins/jquery.scrollUp.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
 
-    <script src="vistas/js/plugins/jquery.flexslider.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/plugins/jquery.flexslider.js"></script>
 
-    <script src="vistas/js/plugins/sweetalert.min.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/plugins/sweetalert.min.js"></script>
 
-    <script src="vistas/js/plugins/md5-min.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/plugins/md5-min.js"></script>
 
 </head>
 <body>
 
     <?php
 
-
+    
       include "vistas/modulos/menu.php";
 
-      include "vistas/modulos/portada.php";
 
+      $rutas = array();
+      $ruta = null;
 
-     ?>
+        if(isset($_GET["ruta"])){
 
+            $rutas = explode("/", $_GET["ruta"]);
 
+            if($ruta != null || $rutas[0] == "inscripcion-online"){
 
-    <div id="modalidades" class="modalidades-section content-hidden">
-        <div class="content-wrap">
-            <div class="conference">
-                <h1 class="modalidades-tittle">
-                    Conferencia
-                </h1>
-                <div class="text">
-                    Veni a la conferencia internacional mas prestigiosa de latinoamerica con oradores de todo el mundo, ademas participa de una cena de gala comprando tu entrada vip.
-                    Enterate quienes vienen a dar las charlas mas importantes a nivel mundial
-                </div>
-                <button type="button">Oradores!</button>
-                <div class="right-conf">
-                    <img src="img/Sheraton-ConferenceRoom.jpg" alt="">
-                </div>
-            </div>
-            <div class="competition">
-                <h1 class="modalidades-tittle">
-                    Competencia
-                </h1>
-                <div class="text">
-                    Participa de nuestras competencias y posicionate entre los mejores lashistas a nivel latinoamericano.
-                    Inscribite en nuestra modalidad Online
-                    <div class="online">
-                        <h2>Copa America 2019</h2>
-                        <h3>Nominaciones</h3>
-                        <?php
-                            include "vistas/modulos/nominaciones.php";
-                        ?>
-                        
-                    </div>
-                    <button type="button">inscribite</button>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+                include "modulos/inscripcion-online.php";
+        
+            }elseif ($ruta != null || $rutas[0] == "carrito-de-compras") {
+                include "modulos/carrito-de-compras.php";
+            }
 
-     <?php
+        }else{
+            include "vistas/modulos/portada.php";
 
+            include "vistas/modulos/modalidades.php";
 
-include "vistas/modulos/personas.php";
+            include "vistas/modulos/personas.php";
+            
+            include "vistas/modulos/sponsors.php";
 
-include "vistas/modulos/sponsors.php";
+            include "vistas/modulos/footer.php";
+        }
+
 
 ?>
 
-    <div class="social-section content-hidden">
-        <div class="content-wrap">
-            <div class="social">
-                <h1 class="social-tittle">
-                    Encontranos en las redes
-                </h1>
-                <ul class="media">
-                    <a href="www.facebook.com/thelashconference" target="_blank">
-                        <li class="facebook icono"></li>
-                    </a>
-                    <a href="www.instagram.com/thelashconference" target="_blank">
-                        <li class="instagram icono"></li>
-                    </a>
-                    <a href="www.twitter.com/thelashconference" target="_blank">
-                        <li class="twitter icono"></li>
-                    </a>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-section">
-        <div class="content-wrap">
-            <div class="pre-footer">
-                <div class="content">
-                    <div class="col col2">
-                            <h2>Contacto</h2>
-                            <div class="contacto">
-                                <p>contacto@thelashconference.com</p>
-                                <p>+54 (298) 4652497</p>
-                                <p>+54 (298) 4652497</p>
-                            </div>
-                        </div>
-                        <div class="col col3">
-                            <h2>Legal</h2>
-                            <div class="legal">
-                                <p><a href="">term</a></p>
-                                <p><a href="">priv</a></p>
-                            </div>
-                        </div>
-                        <div class="col col4">
-                            <div class="arrow-top">
 
-                            </div>
-                            <div class="digit">
-                                Hecho por <span>digit()</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <div class="the-footer">
-                <h2>copyright &copy; the lash conference 2019</h2>
-            </div>
-        </div>
-    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="vistas/js/main.js"></script>
+    <script src="<?php echo $url ; ?>vistas/js/main.js"></script>
 </body>
 </html>
