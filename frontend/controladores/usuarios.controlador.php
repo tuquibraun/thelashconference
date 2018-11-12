@@ -21,8 +21,6 @@ class ControladorUsuarios{
 				$datos = array("nombre"=>$_POST["regUsuario"],
 							   "pass"=> $encriptar,
 							   "email"=> $_POST["regEmail"],
-							   "tipo"=>"admin",
-							   "modo"=> "directo",
 							   "verificacion"=> 1,
 							   "emailEncriptado"=>$encriptarEmail);
 
@@ -46,9 +44,9 @@ class ControladorUsuarios{
 
 					$mail->isMail();
 
-					$mail->setFrom('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
+					$mail->setFrom('registro@thelashconference.com', 'The Lash Conference');
 
-					$mail->addReplyTo('cursos@tutorialesatualcance.com', 'Tutoriales a tu Alcance');
+					$mail->addReplyTo('registro@thelashconference.com', 'The Lash Conference');
 
 					$mail->Subject = "Por favor verifique su dirección de correo electrónico";
 
@@ -142,6 +140,8 @@ class ControladorUsuarios{
 
 			}else{
 
+				echo '<script> console.log("lalala")</script>;';
+
 				echo '<script>
 
 						swal({
@@ -214,9 +214,14 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
 
-				if($respuesta["email"] == $_POST["ingEmail"] && $respuesta["password"] == $encriptar){
+				echo '<script>console.log("'.$respuesta["email"].'")</script>';
+				echo '<script>console.log("'.$_POST["ingEmail"].'")</script>';
+				echo '<script>console.log("'.$respuesta["password"].'")</script>';
+				echo '<script>console.log("'.$encriptar.'")</script>';
 
-					if($respuesta["verificacion"] == 1){
+				if($respuesta["email"] == $_POST["ingEmail"] && $respuesta["pass"] == $encriptar){
+
+				/*	if($respuesta["verificacion"] == 1){
 
 						echo'<script>
 
@@ -236,23 +241,22 @@ class ControladorUsuarios{
 
 							</script>';
 
-					}else{
+					}else{ */
 
 						$_SESSION["validarSesion"] = "ok";
 						$_SESSION["id"] = $respuesta["id"];
 						$_SESSION["nombre"] = $respuesta["nombre"];
 						$_SESSION["foto"] = $respuesta["foto"];
 						$_SESSION["email"] = $respuesta["email"];
-						$_SESSION["password"] = $respuesta["password"];
-						$_SESSION["modo"] = $respuesta["modo"];
+						$_SESSION["pass"] = $respuesta["pass"];
 
 						echo '<script>
 
-							window.location = localStorage.getItem("rutaActual");
+							window.location = "carrito-de-compras";
 
 						</script>';
 
-					}
+					//}
 
 				}else{
 
@@ -268,7 +272,7 @@ class ControladorUsuarios{
 
 							function(isConfirm){
 									 if (isConfirm) {
-									    window.location = localStorage.getItem("rutaActual");
+									    window.location =  "carrito-de-compras";
 									  }
 							});
 
@@ -348,7 +352,7 @@ class ControladorUsuarios{
 				if($respuesta1){
 
 					$id = $respuesta1["id"];
-					$item2 = "password";
+					$item2 = "pass";
 					$valor2 = $encriptar;
 
 					$respuesta2 = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item2, $valor2);
@@ -575,7 +579,7 @@ class ControladorUsuarios{
 				$_SESSION["nombre"] = $respuesta2["nombre"];
 				$_SESSION["foto"] = $respuesta2["foto"];
 				$_SESSION["email"] = $respuesta2["email"];
-				$_SESSION["password"] = $respuesta2["password"];
+				$_SESSION["pass"] = $respuesta2["pass"];
 				$_SESSION["modo"] = $respuesta2["modo"];
 
 				echo "ok";
@@ -587,7 +591,7 @@ class ControladorUsuarios{
 				$_SESSION["nombre"] = $respuesta2["nombre"];
 				$_SESSION["foto"] = $respuesta2["foto"];
 				$_SESSION["email"] = $respuesta2["email"];
-				$_SESSION["password"] = $respuesta2["password"];
+				$_SESSION["pass"] = $respuesta2["pass"];
 				$_SESSION["modo"] = $respuesta2["modo"];
 
 				echo "<span style='color:white'>ok</span>";
@@ -714,7 +718,7 @@ class ControladorUsuarios{
 				$_SESSION["nombre"] = $datos["nombre"];
 				$_SESSION["foto"] = $datos["foto"];
 				$_SESSION["email"] = $datos["email"];
-				$_SESSION["password"] = $datos["password"];
+				$_SESSION["pass"] = $datos["pass"];
 				$_SESSION["modo"] = $_POST["modoUsuario"];
 
 				echo '<script>

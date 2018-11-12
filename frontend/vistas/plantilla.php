@@ -46,7 +46,14 @@
 
     <script src="<?php echo $url ; ?>vistas/js/plugins/md5-min.js"></script>
 
+    <script src="<?php echo $url ; ?>vistas/js/carrito-de-compras.js"></script>
+
+    <script src="<?php echo $url ; ?>vistas/js/nominaciones.js"></script>
+
+    <script src="<?php echo $url ; ?>vistas/js/usuarios.js"></script>
+
 </head>
+
 <body>
 
     <?php
@@ -88,5 +95,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="<?php echo $url ; ?>vistas/js/main.js"></script>
+
+
 </body>
 </html>

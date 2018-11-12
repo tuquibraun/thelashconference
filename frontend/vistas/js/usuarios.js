@@ -41,7 +41,7 @@ $("#regEmail").change(function(){
 		contentType: false,
 		processData: false,
 		success:function(respuesta){
-			
+
 			if(respuesta == "false"){
 
 				$(".alert").remove();
@@ -50,7 +50,7 @@ $("#regEmail").change(function(){
 			}else{
 
 				var modo = JSON.parse(respuesta).modo;
-				
+
 				if(modo == "directo"){
 
 					modo = "esta página";
@@ -159,19 +159,20 @@ function registroUsuario(){
 
 	/*=============================================
 	VALIDAR POLÍTICAS DE PRIVACIDAD
-	=============================================*/
+	=============================================
 
 	var politicas = $("#regPoliticas:checked").val();
-	
+
 	if(politicas != "on"){
 
 		$("#regPoliticas").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Debe aceptar nuestras condiciones de uso y políticas de privacidad</div>')
 
 		return false;
 
-	}
+	} */
 
 	return true;
+	
 }
 
 /*=============================================
@@ -192,7 +193,7 @@ $("#datosImagen").change(function(){
 	/*=============================================
 	VALIDAMOS EL FORMATO DE LA IMAGEN
 	=============================================*/
-	
+
 	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
 
 		$("#datosImagen").val("");
@@ -205,9 +206,9 @@ $("#datosImagen").change(function(){
 		  closeOnConfirm: false
 		},
 		function(isConfirm){
-				 if (isConfirm) {	   
+				 if (isConfirm) {
 				    window.location = rutaOculta+"perfil";
-				  } 
+				  }
 		});
 
 	}
@@ -224,9 +225,9 @@ $("#datosImagen").change(function(){
 		  closeOnConfirm: false
 		},
 		function(isConfirm){
-				 if (isConfirm) {	   
+				 if (isConfirm) {
 				    window.location = rutaOculta+"perfil";
-				  } 
+				  }
 		});
 
 	}else{
@@ -265,7 +266,7 @@ COMENTARIOS CAMBIO DE ESTRELLAS
 $("input[name='puntaje']").change(function(){
 
 	var puntaje = $(this).val();
-	
+
 	switch(puntaje){
 
 		case "0.5":
@@ -406,9 +407,9 @@ $(".deseos").click(function(){
 		  closeOnConfirm: false
 		},
 		function(isConfirm){
-				 if (isConfirm) {	   
+				 if (isConfirm) {
 				    window.location = rutaOculta;
-				  } 
+				  }
 		});
 
 	}else{
@@ -427,8 +428,8 @@ $(".deseos").click(function(){
 			contentType: false,
 			processData: false,
 			success:function(respuesta){
-				
-							
+
+
 			}
 
 		})
@@ -458,7 +459,7 @@ $(".quitarDeseo").click(function(){
 			contentType: false,
 			processData: false,
 			success:function(respuesta){
-			
+
 			}
 
 		});
@@ -494,11 +495,9 @@ $("#eliminarUsuario").click(function(){
 		  closeOnConfirm: false
 		},
 		function(isConfirm){
-				 if (isConfirm) {	   
+				 if (isConfirm) {
 				    window.location = "index.php?ruta=perfil&id="+id+"&foto="+foto;
-				  } 
+				  }
 		});
 
 })
-
-
